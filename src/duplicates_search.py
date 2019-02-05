@@ -2,7 +2,6 @@ from gensim import corpora, models, similarities
 from collections import defaultdict
 import pandas
 import os
-import sys
 
 dataframe = pandas.read_csv("./../data/train_set.csv", sep="\t", error_bad_lines = False)
 df = pandas.DataFrame(columns = ['DOCUMENT ID1', 'DOCUMENT ID2', 'SIMILARITY'])
@@ -27,7 +26,6 @@ else:
 
 lsi = models.LsiModel(corpus, id2word=dictionary, num_topics=1)
 for ind, row in dataframe.iterrows():
-	print(ind)
 	mylist = []
 	vec_bow = dictionary.doc2bow(row['Content'].lower().split())
 	vec_lsi = lsi[vec_bow]
